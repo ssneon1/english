@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA Semester IV – English Question Papers | PRSU</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --cream: #ede7d5;
+    --warm: #c8a96e;
+    --accent: #8b3a1a;
+    --green: #2d5a3d;
+    --muted: #7a6e5f;
+    --border: #d4c9b0;
+    --correct: #2d5a3d;
+    --hint: #6b4c2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 400;
+    min-height: 100vh;
+  }
+
+  /* Subtle paper texture via pseudo-element */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,160,120,0.07) 28px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,120,0.04) 60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-top: 4px double var(--ink);
+    border-bottom: 4px double var(--ink);
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .masthead::before {
+    content: '◆';
+    position: absolute;
+    top: -0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    padding: 0 0.5rem;
+    color: var(--warm);
+    font-size: 0.8rem;
+  }
+  .univ-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .masthead h1 span { color: var(--accent); }
+  .masthead-sub {
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+  }
+  .stat {
+    flex: 1;
+    background: var(--cream);
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  /* ── PAPER TABS ── */
+  .tab-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .tab-btn {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.8rem;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .tab-btn:hover { background: var(--warm); color: #fff; border-color: var(--warm); }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ── PAPER BLOCK ── */
+  .paper { display: none; animation: fadeIn 0.3s ease; }
+  .paper.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .paper-head {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.25rem 1.5rem;
+    border-radius: 3px 3px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .paper-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .paper-head h2 small {
+    display: block;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--warm);
+    margin-top: 2px;
+    font-style: italic;
+  }
+  .paper-pills { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .pill {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    border: 1px solid var(--border);
+    border-top: none;
+    background: #fff;
+  }
+  .section:last-child { border-radius: 0 0 3px 3px; }
+  .sec-label {
+    background: var(--cream);
+    padding: 0.55rem 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sec-toggle {
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: #fff;
+    transition: all 0.2s;
+    font-family: 'Source Serif 4', serif;
+  }
+  .sec-toggle:hover { background: var(--green); color: #fff; border-color: var(--green); }
+
+  /* ── QUESTIONS ── */
+  .q-list { padding: 0.5rem 0; }
+  .q-item {
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid rgba(212,201,176,0.4);
+    transition: background 0.15s;
+  }
+  .q-item:last-child { border-bottom: none; }
+  .q-item:hover { background: rgba(200,169,110,0.05); }
+
+  .q-row { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .q-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--warm);
+    min-width: 26px;
+    padding-top: 2px;
+  }
+  .q-body { flex: 1; }
+  .q-text {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .q-marks {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  /* MCQ options */
+  .opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 1rem;
+    margin-top: 0.6rem;
+    padding-left: 0;
+  }
+  @media(max-width:520px){ .opts { grid-template-columns: 1fr; } }
+  .opt {
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding: 3px 6px;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .opt.correct {
+    background: rgba(45,90,61,0.1);
+    color: var(--correct);
+    font-weight: 600;
+    border-left: 3px solid var(--correct);
+    padding-left: 8px;
+  }
+
+  /* Answer block */
+  .ans-reveal {
+    margin-top: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    background: rgba(107,76,42,0.07);
+    border-left: 3px solid var(--hint);
+    border-radius: 0 3px 3px 0;
+    font-size: 0.82rem;
+    color: var(--hint);
+    line-height: 1.6;
+    display: none;
+  }
+  .ans-reveal.show { display: block; }
+  .ans-reveal strong { color: var(--accent); }
+
+  /* Reveal buttons */
+  .q-actions { margin-top: 0.5rem; display: flex; gap: 6px; flex-wrap: wrap; }
+  .btn-ans {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .btn-ans:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-ans.revealed { background: var(--cream); color: var(--accent); border-color: var(--warm); cursor: default; }
+
+  /* Footer */
+  .footer {
+    margin-top: 3rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .footer strong { font-style: normal; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="univ-tag">Rajju Bhaiya University (PRSU) &nbsp;·&nbsp; Prayagraj</p>
+    <h1>BCA Semester IV<br><span>English Language Skill</span><br>&amp; Communication</h1>
+    <p class="masthead-sub">Ability Enhancement Course &nbsp;·&nbsp; 5 Model Question Papers &nbsp;·&nbsp; 100 Questions</p>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Papers</span></div>
+    <div class="stat"><span class="stat-num">100</span><span class="stat-label">Questions</span></div>
+    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Units</span></div>
+    <div class="stat"><span class="stat-num">50</span><span class="stat-label">Marks Each</span></div>
+    <div class="stat"><span class="stat-num">1hr</span><span class="stat-label">Per Paper</span></div>
+  </div>
+
+  <div class="tab-row" id="tabs"></div>
+  <div id="papers-container"></div>
+
+  <footer class="footer">
+    <strong>BCA Semester IV · English Language Skill and Communication</strong><br>
+    Rajju Bhaiya University (PRSU) · All units covered · For exam preparation only
+  </footer>
+</div>
+
+<script>
+const papers = [
+  {
+    title: "Paper I", sub: "Unit 1 — Basics of Communication",
+    sections: [
+      { label: "Section A — MCQs", marks: "20 × 1 = 20 Marks", type: "mcq", qs: [
+        { q:"Communication is best defined as:", o:["Sleeping","Exchange of information","Only reading","Only writing"], a:1 },
+        { q:"Converting ideas into symbols before sending is called:", o:["Decoding","Feedback","Encoding","Noise"], a:2 },
+        { q:"The receiver converts received symbols back into meaning through:", o:["Encoding","Channel","Decoding","Noise"], a:2 },
+        { q:"Which of the following is verbal communication?", o:["Gesture","Facial expression","Speech","Posture"], a:2 },
+        { q:"Feedback in communication is provided by the:", o:["Sender","Channel","Receiver","Noise"], a:2 },
+        { q:"Noise in communication refers to:", o:["Effective communication","Any barrier","Feedback only","The message"], a:1 },
+        { q:"Formal communication takes place through:", o:["Friends","Official channels","Social media","At home"], a:1 },
+        { q:"Non-verbal communication includes:", o:["Letter","Email","Gestures","Speech"], a:2 },
+        { q:"Which is NOT an element of communication?", o:["Sender","Message","Profit","Receiver"], a:2 },
+        { q:"The channel in communication means:", o:["Path of the message","Feedback","Noise","Sender"], a:0 },
+        { q:"Downward communication flows from:", o:["Junior to senior","Senior to junior","Peer to peer","Outside"], a:1 },
+        { q:"Grapevine is an example of:", o:["Formal communication","Written communication","Informal communication","Oral communication"], a:2 },
+        { q:"A physical barrier to communication is:", o:["Language difference","Distance","Emotions","Attitude"], a:1 },
+        { q:"Eye contact is an example of:", o:["Written communication","Formal communication","Non-verbal communication","Oral communication"], a:2 },
+        { q:"The most important purpose of communication is:", o:["Confusion","Silence","Information sharing","Ignorance"], a:2 },
+        { q:"Communication becomes effective when:", o:["Noise is high","Message is received and understood","Sender talks only","Channel is absent"], a:1 },
+        { q:"Use of jargon is which type of barrier?", o:["Physical","Semantic","Psychological","Cultural"], a:1 },
+        { q:"Horizontal communication happens between:", o:["Boss and employee","Employees at same level","Different departments","External parties"], a:1 },
+        { q:"Which is an oral form of communication?", o:["Report","Notice","Speech","Letter"], a:2 },
+        { q:"Effective communication leads to:", o:["Conflict","Misunderstanding","Better relationships","Failure"], a:2 }
+      ]},
+      { label: "Section B — Short Answer", marks: "5 × 4 = 20 Marks", type: "short", qs: [
+        { q:"Define communication. Write any two characteristics of effective communication.", m:4, a:"Communication is the process of exchanging information, ideas, or feelings between sender and receiver through a medium. Two characteristics: (1) It must be clear and concise. (2) It should have a proper feedback mechanism." },
+        { q:"Differentiate between formal and informal communication.", m:4, a:"Formal communication follows official channels (meetings, emails, memos) and is planned and structured. Informal communication (grapevine) is casual, unplanned, and does not follow the hierarchy." },
+        { q:"What is encoding and decoding? Give one example each.", m:4, a:"Encoding: converting ideas into symbols by the sender (e.g., writing a letter). Decoding: receiver converting received symbols back into meaning (e.g., reading and understanding that letter)." },
+        { q:"List any four barriers of communication.", m:4, a:"(1) Physical barriers: distance, noise. (2) Semantic barriers: jargon, language difference. (3) Psychological barriers: fear, bias, stress. (4) Organisational barriers: rigid hierarchy." },
+        { q:"What is feedback? Why is it important in communication?", m:4, a:"Feedback is the receiver's response to the sender's message. It is important because it confirms whether the message was understood correctly and helps the sender improve future communication." }
+      ]},
+      { label: "Section C — Long Answer", marks: "1 × 10 = 10 Marks", type: "long", qs: [
+        { q:"Explain the communication process with a neat diagram. Describe any four barriers to communication and suggest ways to overcome them.", m:10, a:"Communication Process: Sender → Encoding → Message → Channel → Decoding → Receiver → Feedback (Noise can interrupt at any stage). Four Barriers & Solutions: (1) Physical: use proper technology. (2) Semantic: use simple, clear language. (3) Psychological: build trust and reduce stress. (4) Cultural: develop cultural awareness and sensitivity." }
+      ]}
+    ]
+  },
+  {
+    title: "Paper II", sub: "Unit 2 — LSRW Skills",
+    sections: [
+      { label: "Section A — MCQs", marks: "20 × 1 = 20 Marks", type: "mcq", qs: [
+        { q:"LSRW stands for:", o:["Learning, Speaking, Reading, Writing","Listening, Speaking, Reading, Writing","Listening, Sharing, Reading, Writing","None"], a:1 },
+        { q:"Active listening requires:", o:["Attention and genuine interest","Sleeping","Talking only","Ignoring the speaker"], a:0 },
+        { q:"Skimming is used for:", o:["Finding specific facts","Memorising","Quick reading for main idea","Speaking"], a:2 },
+        { q:"Scanning is used for:", o:["Finding specific information","General reading","Listening","Speaking"], a:0 },
+        { q:"Which is a productive skill?", o:["Listening","Reading","Writing","Scanning"], a:2 },
+        { q:"Hearing is passive whereas listening is:", o:["Also passive","Active","Visual","Written"], a:1 },
+        { q:"Which skill helps you understand spoken language?", o:["Writing","Reading","Listening","Typing"], a:2 },
+        { q:"Speaking is classified as a:", o:["Receptive skill","Productive skill","Passive skill","Written skill"], a:1 },
+        { q:"Reading is classified as a:", o:["Productive skill","Receptive skill","Oral skill","Visual skill"], a:1 },
+        { q:"Good writing primarily requires:", o:["Random sentences","Clarity and logical organisation","Only vocabulary","High speed"], a:1 },
+        { q:"Which technique involves reading every word carefully?", o:["Skimming","Scanning","Intensive reading","Extensive reading"], a:2 },
+        { q:"Extensive reading is mainly done for:", o:["Specific information","Pleasure and general understanding","Exam only","Grammar rules only"], a:1 },
+        { q:"Pronunciation is most important in:", o:["Writing","Reading silently","Speaking","Scanning"], a:2 },
+        { q:"Note-taking combines which two skills?", o:["Only listening","Listening and writing","Speaking","Reading only"], a:1 },
+        { q:"Which is NOT a writing skill?", o:["Clarity","Coherence","Whispering","Correct grammar"], a:2 },
+        { q:"Intonation in speech refers to:", o:["Spelling","Rise and fall of voice","Hand gestures","Writing style"], a:1 },
+        { q:"Listening to news broadcasts helps improve:", o:["Reading speed","Listening comprehension","Writing style","Grammar rules only"], a:1 },
+        { q:"A good speaker should always:", o:["Mumble","Maintain eye contact and speak clearly","Shout","Ignore the audience"], a:1 },
+        { q:"A paragraph must contain:", o:["Only examples","Only questions","Topic sentence, supporting sentences, and conclusion","Random sentences"], a:2 },
+        { q:"Which is a receptive skill?", o:["Speaking","Writing","Reading","All of the above"], a:2 }
+      ]},
+      { label: "Section B — Short Answer", marks: "5 × 4 = 20 Marks", type: "short", qs: [
+        { q:"What is active listening? State any three features of a good listener.", m:4, a:"Active listening means concentrating fully on the speaker to understand the message. Three features: (1) Maintains eye contact. (2) Does not interrupt the speaker. (3) Provides appropriate verbal/non-verbal feedback." },
+        { q:"Differentiate between skimming and scanning with examples.", m:4, a:"Skimming: rapid reading to get the general idea of a text (e.g., quickly reading a newspaper headline and first paragraphs). Scanning: quick reading to locate specific information (e.g., looking for a date or a name in a document)." },
+        { q:"Why is speaking skill important in professional life?", m:4, a:"Speaking skill is essential for job interviews, team meetings, client presentations, and daily workplace interaction. Clear speech builds confidence, projects professionalism, and helps avoid miscommunication." },
+        { q:"What are the characteristics of good writing?", m:4, a:"Good writing is: (1) Clear — easily understood. (2) Concise — no unnecessary words. (3) Coherent — logically organised. (4) Correct — grammatically accurate. (5) Complete — covers the topic fully." },
+        { q:"What is the difference between hearing and listening?", m:4, a:"Hearing is a physical and involuntary process of perceiving sound waves. Listening is an active mental process involving attention, understanding, and interpretation of what is heard." }
+      ]},
+      { label: "Section C — Long Answer", marks: "1 × 10 = 10 Marks", type: "long", qs: [
+        { q:"Explain the LSRW skills in detail. How do all four skills contribute to effective communication in a professional environment?", m:10, a:"L — Listening: helps understand instructions, meetings, and client needs. S — Speaking: enables presentations, interviews, and team communication. R — Reading: builds knowledge and enables understanding of reports, emails, and documents. W — Writing: produces professional documents, emails, and reports. All four skills are interdependent. A professional who excels in all four is far more effective than one with only technical knowledge." }
+      ]}
+    ]
+  },
+  {
+    title: "Paper III", sub: "Unit 3 — Grammar & Vocabulary",
+    sections: [
+      { label: "Section A — MCQs", marks: "20 × 1 = 20 Marks", type: "mcq", qs: [
+        { q:"Which article is used before a vowel sound?", o:["A","An","The","No article"], a:1 },
+        { q:"Which article is used before consonant sounds?", o:["A","An","The","None"], a:0 },
+        { q:"'The Sun' uses 'The' because:", o:["Sun is a common noun","Sun is a unique entity","Sun is plural","No reason"], a:1 },
+        { q:"'An honest man.' 'An' is used because:", o:["Honest starts with H","H is silent making it sound like a vowel","Honest is plural","None"], a:1 },
+        { q:"'I played cricket.' This sentence is in:", o:["Present tense","Future tense","Past tense","Present perfect"], a:2 },
+        { q:"'I will go tomorrow.' This is:", o:["Present tense","Past tense","Future tense","Past perfect"], a:2 },
+        { q:"'I am reading a book.' This tense is:", o:["Simple present","Present continuous","Past continuous","Future"], a:1 },
+        { q:"Plural of 'Child' is:", o:["Childs","Childes","Childrens","Children"], a:3 },
+        { q:"Which is a noun?", o:["Run","Quickly","Book","Beautiful"], a:2 },
+        { q:"Which is a verb?", o:["Table","Blue","Happy","Run"], a:3 },
+        { q:"Which is an adjective?", o:["Quickly","Run","Beautiful","Book"], a:2 },
+        { q:"Which is an adverb?", o:["Happy","Table","Green","Quickly"], a:3 },
+        { q:"A pronoun is used to replace a:", o:["Verb","Adjective","Noun","Adverb"], a:2 },
+        { q:"Synonym of 'Brave' is:", o:["Fearful","Coward","Weak","Courageous"], a:3 },
+        { q:"Antonym of 'Success' is:", o:["Achievement","Victory","Failure","Progress"], a:2 },
+        { q:"Choose the grammatically correct sentence:", o:["He go to school.","He going school.","He goes to school.","He gone school."], a:2 },
+        { q:"'She ___ a book.' Correct option:", o:["Read","Reading","Reads","Readed"], a:2 },
+        { q:"Which punctuation mark ends a declarative sentence?", o:[",",":",";" ,"."], a:3 },
+        { q:"Which word is correctly spelled?", o:["Recieve","Receeve","Receive","Receve"], a:2 },
+        { q:"How many parts of speech are there in English grammar?", o:["6","7","8","9"], a:2 }
+      ]},
+      { label: "Section B — Short Answer", marks: "5 × 4 = 20 Marks", type: "short", qs: [
+        { q:"Explain the use of articles A, An, and The with two examples each.", m:4, a:"'A' before consonant sounds: a cat, a dog. 'An' before vowel sounds: an apple, an honest man. 'The' before specific or unique nouns: the Sun, the book on the table." },
+        { q:"Explain present, past, and future tenses with one example each.", m:4, a:"Present Tense: I play cricket. Past Tense: I played cricket. Future Tense: I will play cricket." },
+        { q:"Define Noun, Pronoun, Verb, and Adjective with one example each.", m:4, a:"Noun: name of a person, place, or thing (Book). Pronoun: word used in place of a noun (He/She). Verb: action or state word (Run/Is). Adjective: word that describes a noun (Beautiful)." },
+        { q:"Write synonyms and antonyms for: Happy, Brave, Fast, Dark.", m:4, a:"Happy — Synonym: Joyful | Antonym: Sad. Brave — Synonym: Courageous | Antonym: Coward. Fast — Synonym: Quick | Antonym: Slow. Dark — Synonym: Gloomy | Antonym: Bright." },
+        { q:"What is one-word substitution? Give four examples.", m:4, a:"One-word substitution means replacing a phrase with a single word. Examples: (1) One who speaks two languages = Bilingual. (2) Fear of water = Hydrophobia. (3) Killing of a king = Regicide. (4) One who heals = Doctor." }
+      ]},
+      { label: "Section C — Long Answer", marks: "1 × 10 = 10 Marks", type: "long", qs: [
+        { q:"Explain all eight parts of speech with their definitions and two examples each.", m:10, a:"1. Noun — naming word (Book, Rama). 2. Pronoun — replaces noun (He, She). 3. Verb — action/state word (Run, Is). 4. Adjective — describes noun (Beautiful, Tall). 5. Adverb — modifies verb/adjective (Quickly, Very). 6. Preposition — shows relationship (In, On). 7. Conjunction — joins words/clauses (And, But). 8. Interjection — expresses emotion (Oh!, Wow!)." }
+      ]}
+    ]
+  },
+  {
+    title: "Paper IV", sub: "Unit 4 — Resume, Interview & GD",
+    sections: [
+      { label: "Section A — MCQs", marks: "20 × 1 = 20 Marks", type: "mcq", qs: [
+        { q:"CV stands for:", o:["Career Value","Curriculum Value","Career Vitae","Curriculum Vitae"], a:3 },
+        { q:"GD stands for:", o:["General Debate","Group Debate","Group Discussion","General Discussion"], a:2 },
+        { q:"A resume is primarily used for:", o:["Shopping","Games","Job Application","Banking"], a:2 },
+        { q:"An interview is best described as:", o:["A debate","A story","A speech","A formal conversation"], a:3 },
+        { q:"During an interview, a candidate should be:", o:["Rude","Overconfident","Nervous","Confident and polite"], a:3 },
+        { q:"Which is NOT normally included in a resume?", o:["Name","Education","Skills","Bank balance"], a:3 },
+        { q:"In a GD, a candidate should:", o:["Shout to be heard","Stay silent throughout","Speak clearly and listen to others","Disagree with everyone"], a:2 },
+        { q:"The opening section of a resume is:", o:["References","Personal information","Hobbies","Salary expected"], a:1 },
+        { q:"Good body language in an interview includes:", o:["Eating during interview","Yawning frequently","Eye contact and upright posture","Playing with phone"], a:2 },
+        { q:"A cover letter is sent along with a:", o:["Mark sheet","Resume","Admit card","Identity proof"], a:1 },
+        { q:"A good resume should be:", o:["Very long and highly detailed","Concise, clear, and error-free","Handwritten only","Without any formatting"], a:1 },
+        { q:"The moderator's role in a GD is to:", o:["Give the final conclusion","Guide the discussion","Argue with participants","Only take notes"], a:1 },
+        { q:"SWOT in interview preparation stands for:", o:["Strength, Weakness, Opportunity, Threat","Speed, Work, Objective, Task","Skill, Will, Opinion, Target","None of these"], a:0 },
+        { q:"The salary question in an interview should be answered:", o:["Angrily","By refusing","Realistically and professionally","With silence"], a:2 },
+        { q:"Ideal length of a fresher's resume is:", o:["5 pages","3 pages","1–2 pages","No specific limit"], a:2 },
+        { q:"Which is a common personal interview question?", o:["What is Python?","Tell me about yourself.","Explain OOP.","What is DBMS?"], a:1 },
+        { q:"In a GD, you should:", o:["Interrupt others frequently","Listen actively and contribute relevant points","Read from a prepared paper","Avoid eye contact"], a:1 },
+        { q:"References in a resume should ideally be:", o:["Family members","Professional contacts who can vouch for you","School friends","Random acquaintances"], a:1 },
+        { q:"Which is a technical question for BCA students?", o:["Tell me about yourself.","What are your hobbies?","What is OOP?","Why should we hire you?"], a:2 },
+        { q:"Formal salutation in a professional letter is:", o:["Hey buddy","Hi dude","What's up","Dear Sir/Madam"], a:3 }
+      ]},
+      { label: "Section B — Short Answer", marks: "5 × 4 = 20 Marks", type: "short", qs: [
+        { q:"What is the difference between a Resume and a CV?", m:4, a:"Resume: Short document (1–2 pages), tailored to a specific job application, highlights relevant skills and experience. CV (Curriculum Vitae): Comprehensive document covering full academic and professional history, longer in length, mainly used in academia and research." },
+        { q:"What is Group Discussion? Write any three advantages.", m:4, a:"Group Discussion (GD) is a structured discussion among candidates on a given topic, commonly used during campus recruitment. Advantages: (1) Tests communication and listening skills. (2) Assesses teamwork and leadership ability. (3) Evaluates clarity of thought and confidence." },
+        { q:"Write any four interview etiquette tips.", m:4, a:"(1) Arrive on time. (2) Dress professionally and formally. (3) Maintain comfortable eye contact. (4) Listen carefully and answer questions clearly and concisely." },
+        { q:"What six components should a resume include?", m:4, a:"(1) Personal Information (name, contact). (2) Career Objective. (3) Educational Qualifications. (4) Technical and Soft Skills. (5) Work Experience or Internships (if any). (6) Hobbies / Extracurricular Activities and References." },
+        { q:"How should you answer 'Tell me about yourself' in an interview?", m:4, a:"Begin with your name and educational background, mention key technical and soft skills, briefly state your career objective, and connect your profile to the job role. Keep the answer to 2–3 minutes. Avoid personal details like family background unless relevant." }
+      ]},
+      { label: "Section C — Long Answer", marks: "1 × 10 = 10 Marks", type: "long", qs: [
+        { q:"Explain Interview Skills in detail. Include types of interviews, preparation tips, do's and don'ts, and common questions for BCA students.", m:10, a:"Types of Interviews: (1) HR Interview — personality and cultural fit. (2) Technical Interview — domain knowledge (OOP, DBMS, OS). (3) Panel Interview — multiple interviewers. (4) Telephonic/Video Interview — remote screening. Preparation Tips: Research the company, revise technical subjects, prepare 'Tell me about yourself', carry extra resume copies. Do's: Be confident, dress formally, ask relevant questions. Don'ts: Don't lie on the resume, don't be arrogant, don't use slang. Common BCA Questions: What is OOP? Difference between C and Java? Explain DBMS concepts. What is an operating system?" }
+      ]}
+    ]
+  },
+  {
+    title: "Paper V", sub: "Full Syllabus — Mixed Paper",
+    sections: [
+      { label: "Section A — MCQs", marks: "20 × 1 = 20 Marks", type: "mcq", qs: [
+        { q:"Which of these is a communication barrier?", o:["Feedback","Message","Noise","Sender"], a:2 },
+        { q:"Email is a form of:", o:["Oral communication","Visual communication","Written communication","Non-verbal communication"], a:2 },
+        { q:"Body language is:", o:["Verbal","Written","Formal","Non-verbal"], a:3 },
+        { q:"Maintaining eye contact in communication helps:", o:["Increase noise","Create confusion","Build trust and improve communication","Cause errors"], a:2 },
+        { q:"Which is NOT a communication skill?", o:["Listening","Writing","Reading","Sleeping"], a:3 },
+        { q:"Which greeting is formal?", o:["Hey!","Yo!","Good Morning","Sup!"], a:2 },
+        { q:"Communication requires at minimum:", o:["Sender only","Receiver only","Sender and Receiver","Channel only"], a:2 },
+        { q:"'Thank you' expresses:", o:["Anger","Fear","Sadness","Gratitude"], a:3 },
+        { q:"'I am playing.' This sentence is in:", o:["Simple present","Past continuous","Present continuous","Future tense"], a:2 },
+        { q:"Antonym of 'Happy' is:", o:["Joyful","Cheerful","Sad","Pleased"], a:2 },
+        { q:"'I have eaten food.' This tense is:", o:["Simple past","Present perfect","Past perfect","Future perfect"], a:1 },
+        { q:"A conjunction is used to:", o:["Name things","Show action","Join words, phrases, or clauses","Describe nouns"], a:2 },
+        { q:"A preposition shows:", o:["Action","Relationship between a noun and other words","Quality or attribute","Quantity or number"], a:1 },
+        { q:"Which word is an interjection?", o:["Quickly","Run","Oh!","The"], a:2 },
+        { q:"GD helps recruiters test:", o:["Technical knowledge only","Academic marks","Communication, teamwork, and leadership","Physical fitness"], a:2 },
+        { q:"Which of these is a soft skill?", o:["Coding","Communication","Database management","Mathematics"], a:1 },
+        { q:"Vocabulary development helps in:", o:["Better communication and comprehension","Physical fitness","Sleeping well","None of these"], a:0 },
+        { q:"An interview panel usually consists of:", o:["One person only","No one","Two or more interviewers","The candidate only"], a:2 },
+        { q:"A well-structured paragraph requires:", o:["Only one sentence","Random ideas","Only examples","Topic sentence, body, and conclusion"], a:3 },
+        { q:"An office memo is an example of:", o:["Informal communication","Grapevine","Formal communication","Oral communication"], a:2 }
+      ]},
+      { label: "Section B — Short Answer", marks: "5 × 4 = 20 Marks", type: "short", qs: [
+        { q:"Define: (i) Feedback  (ii) Encoding  (iii) Decoding  (iv) Channel", m:4, a:"(i) Feedback: the receiver's response to the sender's message. (ii) Encoding: converting ideas into transmittable symbols. (iii) Decoding: interpreting received symbols to extract meaning. (iv) Channel: the medium through which the message travels (e.g., email, phone, face-to-face)." },
+        { q:"Write a short note on vocabulary and its importance in communication.", m:4, a:"Vocabulary is the total set of words a person knows and can use. A strong vocabulary enables clear expression, deeper comprehension, and confidence in both spoken and written communication. It also reduces misunderstandings and makes a professional impression." },
+        { q:"Explain any four soft skills important for BCA graduates.", m:4, a:"(1) Communication — expressing ideas clearly in writing and speech. (2) Teamwork — collaborating effectively with colleagues. (3) Problem-solving — identifying and resolving challenges logically. (4) Time management — prioritising tasks and meeting deadlines." },
+        { q:"What is body language? Give four examples.", m:4, a:"Body language is the use of physical behaviour to communicate non-verbally. Examples: (1) Eye contact = confidence and attentiveness. (2) Crossed arms = defensiveness or discomfort. (3) Nodding = agreement or understanding. (4) Slouching = disinterest or lack of energy." },
+        { q:"Write five do's and five don'ts of Group Discussion.", m:4, a:"Do's: (1) Speak clearly and confidently. (2) Listen to others without interrupting. (3) Stay on topic. (4) Acknowledge others' good points. (5) Initiate the discussion if possible. Don'ts: (1) Don't interrupt others. (2) Don't shout or be aggressive. (3) Don't remain completely silent. (4) Don't use informal slang. (5) Don't dominate or monopolise the discussion." }
+      ]},
+      { label: "Section C — Long Answer", marks: "1 × 10 = 10 Marks", type: "long", qs: [
+        { q:"Write a detailed essay on the importance of communication skills for BCA students in today's professional world.", m:10, a:"Introduction: In today's competitive IT industry, technical knowledge alone is insufficient. Communication skills have become equally important for BCA graduates. Body: (1) Verbal communication — needed for client meetings, team discussions, and project presentations. (2) Written communication — emails, technical reports, and documentation are daily tasks. (3) Listening skills — necessary for understanding project requirements accurately. (4) Interview and GD skills — determine whether a technically sound candidate secures the job. (5) Leadership and teamwork — require clear communication across all levels. Conclusion: BCA students who master communication skills in addition to their technical education are far better equipped to succeed and grow in their careers." }
+      ]}
+    ]
+  }
+];
+
+function buildUI() {
+  const tabRow = document.getElementById('tabs');
+  const container = document.getElementById('papers-container');
+
+  papers.forEach((paper, pi) => {
+    // Tab
+    const tb = document.createElement('button');
+    tb.className = 'tab-btn' + (pi === 0 ? ' active' : '');
+    tb.innerHTML = paper.title;
+    tb.onclick = () => {
+      document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.paper').forEach(p => p.classList.remove('active'));
+      tb.classList.add('active');
+      document.getElementById('p' + pi).classList.add('active');
+    };
+    tabRow.appendChild(tb);
+
+    // Paper
+    const pd = document.createElement('div');
+    pd.className = 'paper' + (pi === 0 ? ' active' : '');
+    pd.id = 'p' + pi;
+
+    let html = `<div class="paper-head">
+      <div>
+        <h2>${paper.title} <small>${paper.sub}</small></h2>
+      </div>
+      <div class="paper-pills">
+        <span class="pill">Time: 1 Hour</span>
+        <span class="pill">Max Marks: 50</span>
+        <span class="pill">All sections compulsory</span>
+      </div>
+    </div>`;
+
+    paper.sections.forEach((sec, si) => {
+      const sid = `s${pi}-${si}`;
+      html += `<div class="section">
+        <div class="sec-label">
+          <span>${sec.label} &nbsp;|&nbsp; ${sec.marks}</span>
+          <button class="sec-toggle" onclick="revealAll('${sid}',${sec.qs.length},'${sec.type}')">Reveal all answers</button>
+        </div>
+        <div class="q-list">`;
+
+      sec.qs.forEach((qObj, qi) => {
+        const qid = `${sid}-q${qi}`;
+        if (sec.type === 'mcq') {
+          const opts = qObj.o.map((op, oi) => `<div class="opt" id="${qid}-o${oi}">${String.fromCharCode(65+oi)}. ${op}</div>`).join('');
+          html += `<div class="q-item" id="${qid}">
+            <div class="q-row">
+              <span class="q-num">${qi+1}.</span>
+              <div class="q-body">
+                <div class="q-text">${qObj.q}</div>
+                <div class="opts">${opts}</div>
+                <div class="q-actions">
+                  <button class="btn-ans" id="${qid}-btn" onclick="revealMCQ('${qid}',${qObj.a},${qObj.o.length})">Show answer</button>
+                </div>
+              </div>
+              <span class="q-marks">[1 mark]</span>
+            </div>
+          </div>`;
+        } else {
+          html += `<div class="q-item" id="${qid}">
+            <div class="q-row">
+              <span class="q-num">${qi+1}.</span>
+              <div class="q-body">
+                <div class="q-text">${qObj.q}</div>
+                <div class="q-actions">
+                  <button class="btn-ans" id="${qid}-btn" onclick="revealHint('${qid}')">Show key points</button>
+                </div>
+                <div class="ans-reveal" id="${qid}-ans">${qObj.a}</div>
+              </div>
+              <span class="q-marks">[${qObj.m} marks]</span>
+            </div>
+          </div>`;
+        }
+      });
+      html += `</div></div>`;
+    });
+
+    pd.innerHTML = html;
+    container.appendChild(pd);
+  });
+}
+
+function revealMCQ(qid, ans, len) {
+  for (let i = 0; i < len; i++) {
+    const el = document.getElementById(`${qid}-o${i}`);
+    if (el) el.classList.toggle('correct', i === ans);
+  }
+  const btn = document.getElementById(`${qid}-btn`);
+  if (btn) { btn.classList.add('revealed'); btn.textContent = '✓ Answered'; btn.disabled = true; }
+}
+
+function revealHint(qid) {
+  const ans = document.getElementById(`${qid}-ans`);
+  if (ans) ans.classList.add('show');
+  const btn = document.getElementById(`${qid}-btn`);
+  if (btn) { btn.classList.add('revealed'); btn.textContent = '✓ Revealed'; btn.disabled = true; }
+}
+
+function revealAll(sid, len, type) {
+  for (let qi = 0; qi < len; qi++) {
+    const qid = `${sid}-q${qi}`;
+    if (type === 'mcq') {
+      const btn = document.getElementById(`${qid}-btn`);
+      if (btn && !btn.disabled) btn.click();
+    } else {
+      revealHint(qid);
+    }
+  }
+}
+
+buildUI();
+</script>
+</body>
+</html>
